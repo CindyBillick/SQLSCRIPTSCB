@@ -24,7 +24,19 @@ SELECT AVG (Price) FROM products;
 SELECT * FROM employees WHERE MiddleInitial IS NULL AND Title = 'Geek Squad';
 -- Find all products from the products table whose stock level is in the arrange of 500 to 1200.  Order by Price from least to greatest
 SELECT * FROM products WHERE StockLevel BETWEEN 500 and 1200 ORDER BY Price ASC;
--- Joins
+
+
+-- Inner Join
 SELECT  SalesID, sales.ProductID, Quantity, products.ProductID, name, Price FROM sales
 INNER JOIN products 
+ON sales.ProductID = products.ProductID;
+
+-- Left Join
+SELECT  SalesID, sales.ProductID, Quantity, products.ProductID, name, Price FROM sales 
+ LEFT JOIN products 
+ON sales.ProductID = products.ProductID;
+
+-- Right Join
+SELECT  SalesID, sales.ProductID AS 'Sales Prod ID', Quantity, products.ProductID, name, Price FROM sales 
+Right JOIN products 
 ON sales.ProductID = products.ProductID;
