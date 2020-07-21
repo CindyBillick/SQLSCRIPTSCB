@@ -16,11 +16,15 @@ SELECT DISTINCT Price FROM products;
   SELECT * FROM employees WHERE FirstName LIKE 'j%';
 -- Find all Macbooks
 SELECT * FROM products WHERE Name = 'Macbook';   
--- Find all prodcuts that are on sale
+-- Find all prodcuts that are on sales
 SELECT * FROM products WHERE OnSale=1;
 -- Find the average price of all products
 SELECT AVG (Price) FROM products;
 -- Find all Geek Squad employees who do not have a middle initial
 SELECT * FROM employees WHERE MiddleInitial IS NULL AND Title = 'Geek Squad';
 -- Find all products from the products table whose stock level is in the arrange of 500 to 1200.  Order by Price from least to greatest
-SELECT * FROM products WHERE StockLevel BETWEEN 500 and 1200 ORDER BY Price ASC, StockLevel DESC;
+SELECT * FROM products WHERE StockLevel BETWEEN 500 and 1200 ORDER BY Price ASC;
+-- Joins
+SELECT  SalesID, sales.ProductID, Quantity, products.ProductID, name, Price FROM sales
+INNER JOIN products 
+ON sales.ProductID = products.ProductID;
