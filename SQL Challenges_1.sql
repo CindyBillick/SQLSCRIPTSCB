@@ -40,3 +40,50 @@ ON sales.ProductID = products.ProductID;
 SELECT  SalesID, sales.ProductID AS 'Sales Prod ID', Quantity, products.ProductID, name, Price FROM sales 
 Right JOIN products 
 ON sales.ProductID = products.ProductID;
+
+-- Inner Join-Task 1
+SELECt products.name,categories.name FROM products
+Inner Join Categories
+ON Products.CategoryID= Categories.CategoryID
+WHERE Categories.Name='Computers';
+
+-- Task 2
+SELECT products.name, products.price,reviews.rating FROM products
+Inner Join Reviews
+ON Products.ProductID=Reviews.ProductID
+WHERE Reviews.Rating=5;
+
+-- Task 3
+SELECT Employees.FirstName, sum(Sales.Quantity) as total from employees
+Inner Join Sales
+On sales.EmployeeID=employees.EmployeeID
+Group by employees.EmployeeID
+order by total desc;
+
+-- Task 4
+SELECT Departments.Name, Categories.Name FROM Departments
+Inner Join Categories
+On Departments.DepartmentID=Categories.DepartmentID
+WHERE Categories.Name='Appliances' or Categories.Name='Games';
+
+-- Task 5
+SELECT products.Name, sum(sales.Quantity), sum(sales.Quantity * sales.PricePerUnit) FROM products
+Inner Join sales
+On products.ProductID=sales.ProductID
+Where products.Name Like '%Hotel California%';
+-- 
+SELECT Products.Name,Reviews.Reviewer,Reviews.Rating, Reviews.Comment
+FROM products
+Inner Join Reviews
+ON Products.ProductID=Reviews.ProductID
+WHERE Reviews.Rating=1 AND Products.Name='Visio TV';
+
+SELECT employees.EmployeeID, employees.FirstName, Employees.LastName, products.Name,sum(sales.Quantity) as total from sales
+inner join employees
+on sales.EmployeeID=employees.EmployeeID
+inner join products
+on products.productID=sales.ProductID
+group by Employees.EmployeeID,Products.ProductID 
+order by total desc;
+
+
