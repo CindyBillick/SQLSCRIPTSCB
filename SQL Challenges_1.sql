@@ -25,14 +25,14 @@ SELECT * FROM employees WHERE MiddleInitial IS NULL AND Title = 'Geek Squad';
 -- Find all products from the products table whose stock level is in the arrange of 500 to 1200.  Order by Price from least to greatest
 SELECT * FROM products WHERE StockLevel BETWEEN 500 and 1200 ORDER BY Price ASC;
 
+---  Join Class Exercises
 
--- Inner Join
 SELECT  SalesID, sales.ProductID, Quantity, products.ProductID, name, Price FROM sales
 INNER JOIN products 
 ON sales.ProductID = products.ProductID;
 
 -- Left Join
-SELECT  SalesID, sales.ProductID, Quantity, products.ProductID, name, Price FROM sales 
+SELECT SalesID, sales.ProductID, Quantity, products.ProductID, name, Price FROM sales 
  LEFT JOIN products 
 ON sales.ProductID = products.ProductID;
 
@@ -41,43 +41,46 @@ SELECT  SalesID, sales.ProductID AS 'Sales Prod ID', Quantity, products.ProductI
 Right JOIN products 
 ON sales.ProductID = products.ProductID;
 
--- Inner Join-Task 1
+-- CHALLENGE JOIN QUESTIONS
+--- **************************
+-- Inner Join
 SELECt products.name,categories.name FROM products
 Inner Join Categories
 ON Products.CategoryID= Categories.CategoryID
 WHERE Categories.Name='Computers';
 
--- Task 2
+-- Inner Join
 SELECT products.name, products.price,reviews.rating FROM products
 Inner Join Reviews
 ON Products.ProductID=Reviews.ProductID
 WHERE Reviews.Rating=5;
 
--- Task 3
+-- Inner Join
 SELECT Employees.FirstName, sum(Sales.Quantity) as total from employees
 Inner Join Sales
 On sales.EmployeeID=employees.EmployeeID
 Group by employees.EmployeeID
 order by total desc;
 
--- Task 4
+-- Inner Join
 SELECT Departments.Name, Categories.Name FROM Departments
 Inner Join Categories
 On Departments.DepartmentID=Categories.DepartmentID
 WHERE Categories.Name='Appliances' or Categories.Name='Games';
 
--- Task 5
+-- Task Inner Join
 SELECT products.Name, sum(sales.Quantity), sum(sales.Quantity * sales.PricePerUnit) FROM products
 Inner Join sales
 On products.ProductID=sales.ProductID
 Where products.Name Like '%Hotel California%';
--- 
+
+-- Inner Join
 SELECT Products.Name,Reviews.Reviewer,Reviews.Rating, Reviews.Comment
 FROM products
 Inner Join Reviews
 ON Products.ProductID=Reviews.ProductID
 WHERE Reviews.Rating=1 AND Products.Name='Visio TV';
-
+-- Bonus
 SELECT employees.EmployeeID, employees.FirstName, Employees.LastName, products.Name,sum(sales.Quantity) as total from sales
 inner join employees
 on sales.EmployeeID=employees.EmployeeID
@@ -85,5 +88,17 @@ inner join products
 on products.productID=sales.ProductID
 group by Employees.EmployeeID,Products.ProductID 
 order by total desc;
+---- New work
+SELECT * FROM Categories
+Right Join departments
+ON departments.DepartmentID=categories.departmentID;
 
+-- Insert
+INSERT INTO departments(name)
+Values ('Clearance');
+
+-- Create an Employee- I acidentally ran it three times
+Insert INTO employees(FirstName, middleinitial, LastName, emailaddress, phonenumber, title, dateofbirth)
+VALUES ('Harley','B','Rogers','cbillick@me.com','2164701489', 'Geek Squad','1996-10-31');
+Select * FROM employees where LastName='Rogers';
 
